@@ -1,0 +1,8 @@
+- ts-loader
+  - TypeScript loader for webpack
+- html-webpack-plugin
+  - Simplifies creation of HTML files to serve your webpack bundles
+- webpack-cli
+  - CLI for webpack & friends
+- webpack-dev-server
+  - Serves a webpack app. Updates the browser on changes.
