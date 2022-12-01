@@ -7,7 +7,8 @@ const observable$ = new Observable<string>((subscriber) => {
   setTimeout(() => subscriber.next("Charlie"), 4_000);
 });
 
-const subscription = observable$.subscribe((value) => console.log(value));
+const observer = (value) => console.log(value);
+const subscription = observable$.subscribe(observer);
 
 setTimeout(() => {
   console.log("Unsubscribe");
