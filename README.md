@@ -9,6 +9,7 @@
 
 ---
 
+## Observable
 * We need to subscribe to an Observable to run its logic.
 * When we subscribe a few tiems to the same Observable: The logic of the Observable will be run independetly for each new Subscription.
 * What happens each time you subscribe to an Observable?
@@ -16,3 +17,19 @@
   * The provided Observer is wrapped into a Subscriber object and passed to the Observable's logic.
 * Wen we have an Observable which never ends and keeps emitting the values, how can we make it stop?
   * We can unsbscribe.
+
+## Marbles
+* What is the 'next' notification used for?
+  * [O] emitting a value
+  * [-] signaling that the Observable has completed
+* How many values can an Observable emit during the Subscription's lifetime?
+  * 0 ~ more
+* The error notification signals an issue with the source and causes the Subscription to end. 
+  Observable can't emit data anymore.
+* What is the purpose of the complete notification?
+  * to signal that the Observable has no more data to emit.
+* Choose which doesn't apply to both - the error and complete notifications:
+  * [-] can be emitted only once during the Subscription lifetime
+  * [-] ends the Subscription
+  * [-] all answers are true for both notifications type
+  * [O] can carry a playload with it
