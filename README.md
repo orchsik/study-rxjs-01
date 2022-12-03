@@ -45,3 +45,9 @@
   * [O] Whenever the Subscription ends.
   * [-] Only when the Observable emits a complete or error notification.
   * [-] Only after we unsubscribe while the Subscriptions is still active.
+
+## Hot vs Cold Observable
+* Cold Observable: Each time we subscribe, the Observable emits the same set of values instantly and then completes. Which behavior is it?
+* Cold Observable: We have an Observable which sends an HTTP request to an external server each time we subscribe to it.
+* Hot Observable: We have an Observable which emits an event each time the user resizes the browser's window. 
+* can change its behavior, for example it can be Cold at first and then become Hot
