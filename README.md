@@ -57,3 +57,17 @@
   * There will be 3 next notifications (one for each provided value) and 1 complete notification.
 * What can be the source provided to the `from` function as an arguments?
   * Arrray, Promise, Observable - All are correct.
+
+## fromEvent, timer, interval
+* Each time we subscribe, an Observable created using the `fromEvent` function uses things like
+  addEvenlistener to connect to an already existing event source. This means that for each subscription a new
+  connection to the same external source will be made, so all Subscriptions will in fact have the same source of
+  emissions. This is what describes this Observable as hot.
+* Should we unsubscribe to avoid memory leaks from the Observable created using the `timer(2000)` call
+  after it emits a value?
+  * No, at this point we're sure that the Observable has completed, so there's no nedd to unsubscribe.
+* Which are the possible ways of ending a Subscription made to an Observable crated using the `interval(1000)` call?
+  * [O] The interval function in that configuration creates an Observable which never ends. It'd keep on emtting the
+    values forever. We need to unsubcribe to stop the emissions.
+  * [O] We can unsubcribe.
+  * [-] We can wailt some time for it to complete.
