@@ -51,3 +51,9 @@
 * Cold Observable: We have an Observable which sends an HTTP request to an external server each time we subscribe to it.
 * Hot Observable: We have an Observable which emits an event each time the user resizes the browser's window. 
 * can change its behavior, for example it can be Cold at first and then become Hot
+
+## of, from
+* If you'd create an Observable using `of('Alice', 'Ben', 'Charlie')` and then subscribe to it, how many notifications will be emitted immediately?
+  * There will be 3 next notifications (one for each provided value) and 1 complete notification.
+* What can be the source provided to the `from` function as an arguments?
+  * Arrray, Promise, Observable - All are correct.
