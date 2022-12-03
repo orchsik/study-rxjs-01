@@ -29,7 +29,19 @@
 * What is the purpose of the complete notification?
   * to signal that the Observable has no more data to emit.
 * Choose which doesn't apply to both - the error and complete notifications:
+  * [O] can carry a playload with it
   * [-] can be emitted only once during the Subscription lifetime
   * [-] ends the Subscription
   * [-] all answers are true for both notifications type
-  * [O] can carry a playload with it
+
+## Subscription Lifecycle
+* What are the ways in which a Subscription can end?
+  * It can be ended by the Observable's logic by emitting an error or complete notification.
+  * It can be ended by oure code by unsubcribing.
+* What is the purpose of the Teardown logic?
+  * [O] It can be used to perform a clean-up or cancellation if the Observable initialized some resources.
+  * [-] It is used to send a special signal to RxJS that the Subscription has ended.
+* Let's assume that an Observable has some Teardown logic provided. When will it be executed?
+  * [O] Whenever the Subscription ends.
+  * [-] Only when the Observable emits a complete or error notification.
+  * [-] Only after we unsubscribe while the Subscriptions is still active.
