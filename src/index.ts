@@ -1,6 +1,6 @@
-import { fromEvent } from "rxjs";
+import { EMPTY, fromEvent, of } from "rxjs";
 import { ajax } from "rxjs/ajax";
-import { concatMap, map } from "rxjs/operators";
+import { catchError, concatMap, map } from "rxjs/operators";
 
 const endpointInput: HTMLInputElement =
   document.querySelector("input#endpoint");
@@ -11,8 +11,14 @@ fromEvent(fetchButton, "click")
   .pipe(
     map(() => endpointInput.value),
     concatMap((value) =>
-      ajax(`https://random-data-api.com/api/${value}/random_${value}`),
+      ajax(`https://random-data-api.com/api/${value}/random_${value}`).pipe(
+        catchError((err) => EMPTY),
+      ),
     ),
-    map((value) => value.response),
+    // catchError((err) => EMPTY), // 여기에서 하면 main Observable 종료되버린다.
   )
-  .subscribe((value) => console.log(value));
+  .subscribe({
+    next: (value) => console.log("[next]", value),
+    error: (err) => console.log("[error]", err.message),
+    complete: () => console.log("[complete]"),
+  });
