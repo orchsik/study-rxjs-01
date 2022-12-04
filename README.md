@@ -71,3 +71,14 @@
     values forever. We need to unsubcribe to stop the emissions.
   * [O] We can unsubcribe.
   * [-] We can wailt some time for it to complete.
+
+## forkJoin, combineLatest
+* An Observable crated using the `forkjoin` function needs all source Observables to complete before emitting something.
+  Also, `combinelatest` needs at least one value from each source before it emits something.
+  They accept an array of Observables as input.
+* What would an Observable created using `forkJoin([of('ABC'), timer(1000)])` emit once we subscribe to it?
+  * It'd emit an array with the value 'ABC' and the value 0, one second after subscribing.
+* What would an Observable created using `forkJoin([of('ABC'), interval(1000)])` emit once we subscribe to it?
+  * it won't emit anything as the second provided Observable never completes.
+* What would an Observable created using `combineLatest([of('ABC', interval(1000))])` emit once we subscribe to it?
+  * It'd emit an array with the value 'ABC' and the value of the interval counter every second.
