@@ -112,3 +112,16 @@
 * The concatMap operator waits until the Subscription handling the previous value completes before starting a new one.
 * The switchMap operator cancels the previous Inner Subscription and starts a new one right away.
 * The mergeMap operator concurrently handles all the values.
+
+## Subjects
+* It allows us to call the `next` method on it to emit value to all active subscriptions.
+* It can be passed as an Observer to the `subscribe` method.
+* We can subscribe to it the same way we can to regular Observables.
+* We can mix it together with other Observables when using combineLastest.
+* Which would be a better choice if you'd like to be able to store some value and react to its changes?
+  * BehaviorSubject
+* Which would be a better choice to emit events which would trigger a refresh of the data?
+  * Subject
+* Which is true for a BehaviorSubject?
+  * You ALWAYS need to provide some inital value when creating a new BehaviorSubject.
+  
