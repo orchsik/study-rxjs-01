@@ -1,6 +1,6 @@
 import { EMPTY, fromEvent, of } from "rxjs";
 import { ajax } from "rxjs/ajax";
-import { catchError, concatMap, map } from "rxjs/operators";
+import { catchError, concatMap, debounceTime, map } from "rxjs/operators";
 
 const endpointInput: HTMLInputElement =
   document.querySelector("input#endpoint");
@@ -9,6 +9,7 @@ const fetchButton = document.querySelector("button#fetch");
 
 fromEvent(fetchButton, "click")
   .pipe(
+    debounceTime(1000),
     map(() => endpointInput.value),
     concatMap((value) =>
       ajax(`https://random-data-api.com/api/${value}/random_${value}`).pipe(

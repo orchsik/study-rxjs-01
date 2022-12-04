@@ -96,3 +96,19 @@
   , when will it subscribe to the `fallbackObservable$`?
   * [O]Immediately when we subscribe to the main/outer Observalbe.
   * [-] When the main/outer Observable will emit an error.
+
+## Flattening Operators
+* Which can be achieved by using a Flattening Operator such as concat/switch/mergeMap?
+  * Storing some date on a server, each time the user changes some setting.
+  * Fetching autocomplete ideas based on the users's search input query.
+  * Mapping each emmited value to new Observable.
+* How does a Flattening Operator such as concat/switch/mergeMap work?
+  * It maps each value into a new Observable, creates a Subscription to this Observable and then
+    passes the values emitted by it to the output.
+* Which notifications coming from the inner Observable does a Flattening Operator pass to the output?
+  * next and error notifications
+* What will happen if the Inner Observable passed to a concat/switch/mergeMap operator emits an error?
+  * This error will be passed to the output and the Outer Subscription will error as well.
+* The concatMap operator waits until the Subscription handling the previous value completes before starting a new one.
+* The switchMap operator cancels the previous Inner Subscription and starts a new one right away.
+* The mergeMap operator concurrently handles all the values.
