@@ -9,7 +9,14 @@ const failingHttpRequest$ = new Observable((subscriber) => {
 
 console.log("App started");
 
-failingHttpRequest$.pipe(catchError((error) => EMPTY)).subscribe({
-  next: (value) => console.log(value),
-  complete: () => console.log("Completed"),
-});
+failingHttpRequest$
+  .pipe(
+    catchError((error) => {
+      return EMPTY;
+      // return of("Fallback value);
+    }),
+  )
+  .subscribe({
+    next: (value) => console.log(value),
+    complete: () => console.log("Completed"),
+  });
