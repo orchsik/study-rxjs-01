@@ -82,3 +82,17 @@
   * it won't emit anything as the second provided Observable never completes.
 * What would an Observable created using `combineLatest([of('ABC', interval(1000))])` emit once we subscribe to it?
   * It'd emit an array with the value 'ABC' and the value of the interval counter every second.
+
+## Pipeable Operators
+* Applying a Pipeable Operator creates a new Observable with some additional logic.
+* Which can be accomplished by using the Pipeable Operators?
+  * mapping the values of next notifications
+  * debouncing the values in time
+  * providing a fallback Observable in case of an error
+* How does the `tap` operator transform the notifications?
+  * It doesn't transform notifications of any type.
+  * The tap operator just runs some code with side-effects without altering the notifications in the Observable stream.
+* if we use a `catchError` operator applied like this: `catchError(() => fallbackObservable$)`
+  , when will it subscribe to the `fallbackObservable$`?
+  * [O]Immediately when we subscribe to the main/outer Observalbe.
+  * [-] When the main/outer Observable will emit an error.
