@@ -12,7 +12,10 @@ fromEvent(fetchButton, "click")
     map(() => endpointInput.value),
     concatMap((value) =>
       ajax(`https://random-data-api.com/api/${value}/random_${value}`).pipe(
-        catchError((err) => EMPTY),
+        catchError((err) => {
+          return EMPTY;
+          // return of(`Could not fetch data : ${err}`);
+        }),
       ),
     ),
     // catchError((err) => EMPTY), // 여기에서 하면 main Observable 종료되버린다.
